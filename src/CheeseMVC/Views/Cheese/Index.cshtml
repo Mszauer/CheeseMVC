@@ -1,0 +1,34 @@
+﻿@model CheeseMVC.ViewModels.CheeseListViewModel
+
+<h1>@Model.Title</h1>
+
+@if (Model.Cheeses.Count == 0)
+{
+    <p>No cheeses yet!</p>
+}
+
+<table class="table">
+
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Rating</th>
+        <th>Edit</th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var cheese in Model.Cheeses)
+    {
+        <tr>
+            <td>@cheese.Name</td>
+            <td>@cheese.Description</td>
+            <td>@cheese.Type</td>
+            <td>@cheese.Rating</td>
+            <td><a asp-controller="Cheese" asp-action="Edit" asp-route-id="@cheese.ID">edit</a></td>
+            <td><a asp-controller="Cheese" asp-action="Detail" asp-route-id="@cheese.ID">detail</a></td>
+        </tr>
+    }
+</table>
+
+<p><a asp-controller="Cheese" asp-action="Add">Add Cheese</a></p>
